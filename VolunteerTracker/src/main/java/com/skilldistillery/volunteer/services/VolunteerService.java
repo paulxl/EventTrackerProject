@@ -1,4 +1,4 @@
-package com.skilldistillery.services;
+package com.skilldistillery.volunteer.services;
 
 import java.util.List;
 import java.util.Optional;

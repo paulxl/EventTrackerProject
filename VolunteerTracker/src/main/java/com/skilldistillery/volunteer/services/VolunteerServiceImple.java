@@ -1,4 +1,4 @@
-package com.skilldistillery.services;
+package com.skilldistillery.volunteer.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.repositories.VolunteerRepository;
 import com.skilldistillery.volunteer.entities.Volunteer;
+import com.skilldistillery.volunteer.repositories.VolunteerRepository;
 @Service
 public class VolunteerServiceImple implements VolunteerService {
 	

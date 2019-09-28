@@ -1,4 +1,4 @@
-package com.skilldistillery.repositories;
+package com.skilldistillery.volunteer.repositories;
 
 
 
