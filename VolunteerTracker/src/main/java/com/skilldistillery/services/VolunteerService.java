@@ -9,19 +9,19 @@ public interface VolunteerService {
 	// ------READ----------
 	List<Volunteer> findAll();
 
-	Optional<Volunteer> findById(int id);
+	Volunteer findById(int id);
 
-	Optional<Volunteer> findByUserName(String username);
+	Volunteer findByUserName(String username);
 
 	List<Volunteer> findByActive(Boolean active);
 
 	// ----------UPDATE----------
-	Optional<Volunteer> updateById(int id, Volunteer volunteer);
+	Volunteer updateById(int id, Volunteer volunteer);
 
-	Optional<Volunteer> updateByUserName(String username, Volunteer volunteer);
+	Volunteer updateByUserName(String username, Volunteer volunteer);
 
 	// ----------DELETE------------
-	Optional<Volunteer> deleteById(int id);
+	Volunteer deleteById(int id);
 
 	// ---------CREATE--------------
 	Volunteer createNew(Volunteer volunteer);

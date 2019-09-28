@@ -19,82 +19,69 @@ public class VolunteerServiceImple implements VolunteerService {
 		List<Volunteer> vol = repo.findAll();		
 		return vol;
 	}
-
 	@Override
-	public Optional<Volunteer> findById(int id) {
-		Optional<Volunteer> vol =repo.findById(id);
-		if(vol.isPresent()) {
-			Volunteer vol1 = vol.get();
+	public Volunteer findById(int id) {
+		Optional<Volunteer> volId =repo.findById(id);
+		Volunteer vol = null;
+		if(volId.isPresent()) {
+			vol = volId.get();
 		}		
 		return vol;
 	}
-
 	@Override
-	public Optional<Volunteer> findByUserName(String username) {
-		Optional<Volunteer> vol = repo.findByUsername(username);
-		
+	public Volunteer findByUserName(String username) {
+		Optional<Volunteer> volUN = repo.findByUsername(username);
+		Volunteer vol = null;
+		if(volUN != null) {
+			vol = volUN.get();
+		}		
 		return vol;
 	}
-
 	@Override
 	public List<Volunteer> findByActive(Boolean active) {
 		List<Volunteer> vols = repo.findByActive(active);	
 		return vols;
 	}
-
 	@Override
-	public Optional<Volunteer> updateById(int id, Volunteer volunteer) {
-		Optional<Volunteer> vol = repo.findById(id);
-		Volunteer managedVolunteer = null;
-		if(vol.isPresent()) {
-			managedVolunteer.getUsername();
-			managedVolunteer.getPassword();
-			managedVolunteer.getFirstname();
-			managedVolunteer.getLastname();
-			managedVolunteer.getSize();
-			managedVolunteer.getBreeds();
-			managedVolunteer.getActive();
-			repo.saveAndFlush(volunteer);			
-		}
-				
-		return vol;
+	public Volunteer updateById(int id, Volunteer volunteer) {
+		Volunteer vol = findById(id);
+
+		if(vol != null) {
+			vol.setUsername(volunteer.getUsername());
+			vol.setPassword(volunteer.getPassword());
+			vol.setFirstname(volunteer.getFirstname());
+			vol.setLastname(volunteer.getLastname());
+			vol.setSize(volunteer.getSize());
+			vol.setBreeds(volunteer.getBreeds());
+			vol.setActive(volunteer.getActive());			
+		}				
+		return repo.saveAndFlush(vol);
 	}
-
 	@Override
-	public Optional<Volunteer> updateByUserName(String username, Volunteer volunteer) {
-		Optional<Volunteer> vol = repo.findByUsername(username);
-		Volunteer managedVolunteer = null;
-		try {
-			if(vol.isPresent()) {
-				managedVolunteer.getUsername();
-				managedVolunteer.getPassword();
-				managedVolunteer.getFirstname();
-				managedVolunteer.getLastname();
-				managedVolunteer.getSize();
-				managedVolunteer.getBreeds();
-				managedVolunteer.getActive();
-				repo.saveAndFlush(volunteer);			
-			}
-		} catch (Exception e) {		
-			e.printStackTrace();
-			
-		}	
-		return vol;
+	public Volunteer updateByUserName(String username, Volunteer volunteer) {
+		Volunteer vol = findByUserName(username);
+		if(vol != null) {
+			vol.setUsername(volunteer.getUsername());
+			vol.setPassword(volunteer.getPassword());
+			vol.setFirstname(volunteer.getFirstname());
+			vol.setLastname(volunteer.getLastname());
+			vol.setSize(volunteer.getSize());
+			vol.setBreeds(volunteer.getBreeds());
+			vol.setActive(volunteer.getActive());			
+		}			
+		return repo.saveAndFlush(vol);
 	}
-
 	@Override
-	public Optional<Volunteer> deleteById(int id) {
+	public Volunteer deleteById(int id) {
 		Optional<Volunteer> vol = repo.findById(id);
 		if(vol.isPresent()) {
 			repo.deleteById(id);
 		}		
 		return null;
 	}
-
 	@Override
 	public Volunteer createNew(Volunteer volunteer) {
 				
 		return repo.saveAndFlush(volunteer);
 	}
-
 }
