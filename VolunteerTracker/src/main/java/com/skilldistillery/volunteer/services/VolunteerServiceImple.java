@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.volunteer.entities.Volunteer;
 import com.skilldistillery.volunteer.repositories.VolunteerRepository;
+
 @Service
 public class VolunteerServiceImple implements VolunteerService {
 	

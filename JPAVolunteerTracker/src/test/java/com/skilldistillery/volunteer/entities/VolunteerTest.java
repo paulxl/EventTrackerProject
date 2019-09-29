@@ -2,7 +2,7 @@ package com.skilldistillery.volunteer.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -53,7 +53,7 @@ class VolunteerTest {
 	@Test
 	@DisplayName("testing fields of entity")
 	public void test2() {
-		//assertNotNull(vol);
+		assertNotNull(vol);
 		assertEquals("heart", vol.getLastname());
 
 	}
