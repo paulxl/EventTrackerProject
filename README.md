@@ -38,13 +38,13 @@ This application has the ability to do some basic CRUD funtionality using localh
 * Apache Tomcat server
 * Slack
 
-###Lessons Learned
+### Lessons Learned
 * JPARepository and Service entities make life a whole easier.
 * The more complicated a system the more attention to the unusual details is needed.  Case in point: I kept getting a application failure at start-up that stumped me for hours.  Our TAs downloaded it from GitHub and discovered I had an illegal and unnecessary argument in the JPARepository.  This caused my Spring Boot application not to start.  Removing it and magic happened and all was good in java world.
 * I also had mapping issues in the controller, because prior to this assignment I did not fully understand them.  I now have a much better understanding.
 
-###Challenges
+### Challenges
 * Tracing out errors as always, trouble-shooting mapping issues, and of course typos.
 
-###Further Goals
+### Further Goals
 * I plan on growing this project to include the above tables and make it web friendly and easy to use.  Something a non-profit animal rescue group could easily use and implement.
