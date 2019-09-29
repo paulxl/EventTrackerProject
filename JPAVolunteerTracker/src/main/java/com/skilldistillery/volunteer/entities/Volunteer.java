@@ -16,9 +16,9 @@ public class Volunteer {
 	private String password;
 	private String firstname;
 	private String lastname;
+	private Boolean active;
 	private String size;
 	private String breeds;
-	private Boolean active;
 
 	public Volunteer() {		
 	}
@@ -30,9 +30,15 @@ public class Volunteer {
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.active = active;
 		this.size = size;
 		this.breeds = breeds;
-		this.active = active;
+	}
+
+	@Override
+	public String toString() {
+		return "Volunteer [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
+				+ ", lastname=" + lastname + ", active=" + active + ", size=" + size + ", breeds=" + breeds + "]";
 	}
 
 	public int getId() {
@@ -84,11 +90,7 @@ public class Volunteer {
 		this.active = active;
 	}
 	
-	@Override
-	public String toString() {
-		return "Volunteer [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", size=" + size + ", breeds=" + breeds + ", active=" + active + "]";
-	}
+	
 
 
 
