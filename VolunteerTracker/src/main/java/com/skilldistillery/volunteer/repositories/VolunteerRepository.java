@@ -12,7 +12,7 @@ import com.skilldistillery.volunteer.entities.Volunteer;
 public interface VolunteerRepository extends JpaRepository<Volunteer, Integer> {
 	Optional<Volunteer> findByUsername(String username);
 	List<Volunteer> findByActive(Boolean active);
-	Optional<Volunteer> updateByUserName(String username);
+	//Optional<Volunteer> updateByUserName(String username);
 	
 	
 
