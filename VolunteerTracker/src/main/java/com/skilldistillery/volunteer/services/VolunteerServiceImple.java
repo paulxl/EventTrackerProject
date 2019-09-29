@@ -21,7 +21,7 @@ public class VolunteerServiceImple implements VolunteerService {
 		return vol;
 	}
 	@Override
-	public Volunteer findById(int id) {
+	public Volunteer findById(Integer id) {
 		Optional<Volunteer> volId =repo.findById(id);
 		Volunteer vol = null;
 		if(volId.isPresent()) {
@@ -52,9 +52,9 @@ public class VolunteerServiceImple implements VolunteerService {
 			vol.setPassword(volunteer.getPassword());
 			vol.setFirstname(volunteer.getFirstname());
 			vol.setLastname(volunteer.getLastname());
+			vol.setActive(volunteer.getActive());			
 			vol.setSize(volunteer.getSize());
 			vol.setBreeds(volunteer.getBreeds());
-			vol.setActive(volunteer.getActive());			
 		}				
 		return repo.saveAndFlush(vol);
 	}
@@ -66,9 +66,9 @@ public class VolunteerServiceImple implements VolunteerService {
 			vol.setPassword(volunteer.getPassword());
 			vol.setFirstname(volunteer.getFirstname());
 			vol.setLastname(volunteer.getLastname());
+			vol.setActive(volunteer.getActive());			
 			vol.setSize(volunteer.getSize());
 			vol.setBreeds(volunteer.getBreeds());
-			vol.setActive(volunteer.getActive());			
 		}			
 		return repo.saveAndFlush(vol);
 	}

@@ -23,8 +23,8 @@ public class Volunteer {
 	public Volunteer() {		
 	}
 	
-	public Volunteer(String username, String password, String firstname, String lastname, String size, String breeds,
-			Boolean active) {
+	public Volunteer(String username, String password, String firstname, String lastname,Boolean active, String size, String breeds
+			) {
 		super();
 		this.username = username;
 		this.password = password;

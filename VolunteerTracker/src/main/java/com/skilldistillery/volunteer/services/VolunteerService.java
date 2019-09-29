@@ -9,7 +9,7 @@ public interface VolunteerService {
 	// ------READ----------
 	List<Volunteer> findAll();
 
-	Volunteer findById(int id);
+	Volunteer findById(Integer id);
 
 	Volunteer findByUserName(String username);
 
