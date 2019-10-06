@@ -6,27 +6,42 @@ window.addEventListener('load', function(e) {
 function init(){//removed evt in parathases
 	console.log("init()");
 	
-	document.allVol.volAll.addEventListener('click', function(event){//-----all listener------
-		event.preventDefault();
-		console.log('in get all listen');
+	document.allVol.volAll.addEventListener('click', function(e){//-----all listener------
+		e.preventDefault();		
 		getAll();
 	});
-	document.volById.volById.addEventListener('click', function(event) {//--by id listener------
-        event.preventDefault();
-        var volId = document.volById.volId.value;
+	
+	document.volById.volById.addEventListener('click', function(e) {//--by id listener------
+        e.preventDefault();
+        let volId = document.volById.volId.value;
         if (!isNaN(volId) && volId > 0) {
             getVolunteer(volId);
         }
     });
-	document.volByUN.volByUN.addEventListener('click', function(event) {//--by username listener--
-        event.preventDefault();
-        console.log('in UN listen')
-        var volUN = document.volByUN.volUN.value;
+	
+	document.volByUN.volByUN.addEventListener('click', function(e) {//--by username listener--
+        e.preventDefault();        
+        let volUN = document.volByUN.volUN.value;
         if (volUN != null) {
         	console.log('in the username listener');
             getVolunteerByUN(volUN);
         }
     });
+	
+//	document.updateById.updateById.addEventListener('click', function(e){//--updatebyId listener
+//		e.preventDefault();
+//		let upId = document.updateById.upId.value;
+//		if (!isNaN(upId) && upId > 0){
+//			updateMeById(upId);
+//		}
+//	});
+	document.createVol.createVol.addEventListener('click', function(e){
+		e.preventDefault();
+		console.log('in creat listener');
+		createNew(e);
+		
+	});
+			
 
 }
 function getAll(){//---------get all-------------------
@@ -39,25 +54,26 @@ function getAll(){//---------get all-------------------
 		if(xhr.readyState === 4 && xhr.status < 400) {
 			console.log('before parse');
 			let vol = JSON.parse(xhr.responseText);
-			displayAll(vol);
+			
 			console.log('in the get all to print'+ vol);
+			displayAll(vol);
 		} else {
 			console.log('something went wrong in get all');
 			let div = document.getElementById('outAll');
 			//div.textContent = 'Something went wrong, database not accessable at this time';
 		}
 	};
-	xhr.send(null);
+	xhr.send();
 }
-function displayAll(vol){//------------output all--------------------
+function displayAll(vol){            //------------output all--------------------
 	console.log('in display all');
-	let body = document.getElementById('outAll');
-	outputById.textContent ='';
+	
+
 	
 	let tableB = document.getElementById('tablebody');
-	body.appendChild(tableB);
-	
-	for(let i =0; i<vol.length; i++){
+	tableB.textContent ='';
+		
+	for(let i =0; i < vol.length; i++){
 		let tr = document.createElement('tr');
 		
 		let td1 = document.createElement('td');		
@@ -88,8 +104,39 @@ function displayAll(vol){//------------output all--------------------
 		td7.textContent = vol[i].breeds;
 		tr.appendChild(td7);
 		
+		let td8 =document.createElement('td');
+		let button1 = document.createElement('input');
+		button1.setAttribute('type','button');
+		button1.setAttribute('value', 'Edit This Entry');
+		button1.setAttribute('name', 'edit');
+		td8.appendChild(button1);
+		let submit1 = document.createElement('input');
+		submit1.setAttribute('type', 'hidden');
+		submit1.setAttribute('name','id');
+		submit1.setAttribute('value', vol[i]);
+		td8.appendChild(submit1);
+		tr.appendChild(td8);
+		
+		let td9 =document.createElement('td');
+		let button2 = document.createElement('input');
+		button2.setAttribute('type','button');
+		button2.setAttribute('value', 'Delete This Entry');
+		button2.setAttribute('name', 'delete');
+		td9.appendChild(button2);
+		let submit2 = document.createElement('input');
+		submit2.setAttribute('type', 'hidden');
+		submit2.setAttribute('name','id');
+		submit2.setAttribute('value', vol[i]);
+		td9.appendChild(submit2);
+		tr.appendChild(td9);
+		
+		
 		tableB.appendChild(tr);
-	}		
+		
+	}
+	let cc = vol.length;
+	divC = document.getElementById('count');
+	divC.textContent='Currently there are:  '+ cc +'  volunteers in the database.';
 }
 
 
@@ -116,31 +163,31 @@ function displayVolunteer(volunteer){//-------------output by id--------------
 	    
 	    let ul = document.createElement("ul");
 	    outputById.appendChild(ul);
-	    let li;
 	    
-	    li = document.createElement("li");	    
-	    li.textContent = volunteer.username;	    
-	    ul.appendChild(li);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.firstname;	    
-	    ul.appendChild(li);
+	    let li1 = document.createElement("li");	    
+	    li1.textContent = volunteer.username;	    
+	    ul.appendChild(li1);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.lastname;	    
-	    ul.appendChild(li);
+	    let li2 = document.createElement("li");
+	    li2.textContent = volunteer.firstname;	    
+	    ul.appendChild(li2);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.active;	    
-	    ul.appendChild(li);
+	    let li3 = document.createElement("li");
+	    li3.textContent = volunteer.lastname;	    
+	    ul.appendChild(li3);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.size;	    
-	    ul.appendChild(li);
+	    let li4 = document.createElement("li");
+	    li4.textContent = volunteer.active;	    
+	    ul.appendChild(li4);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.breeds;	    
-	    ul.appendChild(li);	
+	    let li5 = document.createElement("li");
+	    li5.textContent = volunteer.size;	    
+	    ul.appendChild(li5);
+	    
+	    let li6 = document.createElement("li");
+	    li6.textContent = volunteer.breeds;	    
+	    ul.appendChild(li6);	
 }
 function getVolunteerByUN(volUN){//-------------get by username---------------
 	console.log('in get by UN');
@@ -166,29 +213,74 @@ function displayVolunteerByUN(volunteer){//------------output by username-------
 	    
 	    let ul = document.createElement("ul");
 	    outputByUN.appendChild(ul);
-	    let li;
 	    
-	    li = document.createElement("li");	    
-	    li.textContent = volunteer.username;	    
-	    ul.appendChild(li);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.firstname;	    
-	    ul.appendChild(li);
+	    let li1 = document.createElement("li");	    
+	    li1.textContent = volunteer.username;	    
+	    ul.appendChild(li1);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.lastname;	    
-	    ul.appendChild(li);
+	    let li2 = document.createElement("li");
+	    li2.textContent = volunteer.firstname;	    
+	    ul.appendChild(li2);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.active;	    
-	    ul.appendChild(li);
+	    let li3 = document.createElement("li");
+	    li3.textContent = volunteer.lastname;	    
+	    ul.appendChild(li3);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.size;	    
-	    ul.appendChild(li);
+	    let li4 = document.createElement("li");
+	    li4.textContent = volunteer.active;	    
+	    ul.appendChild(li4);
 	    
-	    li = document.createElement("li");
-	    li.textContent = volunteer.breeds;	    
-	    ul.appendChild(li);	
+	    let li5 = document.createElement("li");
+	    li5.textContent = volunteer.size;	    
+	    ul.appendChild(li5);
+	    
+	    let li6 = document.createElement("li");
+	    li6.textContent = volunteer.breeds;	    
+	    ul.appendChild(li6);	
 }
+function createNew(){
+	
+	let form = document.createVol;
+	console.log('in create new');
+	if(form.username.value !=='' && form.password.value !=='' && form.firstname.value !== '' && form.lastname.value !=='' ){
+		let volC ={
+				username : form.username.value,
+				password : form.password.value,
+				firstname : form.firstname.value,
+				lastname : form.lastname.value,
+				active : form.active.value,
+				size : form.size.value,
+				breeds : form.breeds.value		
+				}
+	
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST','api/volunteer',true);
+	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === 4 && xhr.status <400){
+			volC = JSON.parse(xhr.responseText);
+			console.log('sent create new vol');
+			getAll();
+		} else {
+			let div = document.getElementById('createData');
+			div.textContent= 'Unable to process right now, please try again';
+			
+		}
+		
+	};
+	
+	xhr.send(JSON.stringify(volC));
+}
+	else{
+		let div = document.getElementById('createData');
+		div.textContent='Missing Data, Please Try Again.';
+	}
+}
+//function updateMeById(upId){
+//	let xhr = new XMLHttpRequest();
+//	xhr.open("PUT", "/api/volunteer/" + upId);
+//    xhr.onreadystatechange = function() {
+//        if (xhr.readyState === 4 && xhr.status < 400) {
+//}
