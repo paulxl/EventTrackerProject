@@ -30,7 +30,7 @@ public class VolunteerServiceImple implements VolunteerService {
 		return vol;
 	}
 	@Override
-	public Volunteer findByUserName(String username) {
+	public Volunteer findByUsername(String username) {
 		Optional<Volunteer> volUN = repo.findByUsername(username);
 		Volunteer vol = null;
 		if(volUN != null) {
@@ -59,8 +59,8 @@ public class VolunteerServiceImple implements VolunteerService {
 		return repo.saveAndFlush(vol);
 	}
 	@Override
-	public Volunteer updateByUserName(String username, Volunteer volunteer) {
-		Volunteer vol = findByUserName(username);
+	public Volunteer updateByUsername(String username, Volunteer volunteer) {
+		Volunteer vol = findByUsername(username);
 		if(vol != null) {
 			vol.setUsername(volunteer.getUsername());
 			vol.setPassword(volunteer.getPassword());

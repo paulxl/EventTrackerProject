@@ -11,14 +11,14 @@ public interface VolunteerService {
 
 	Volunteer findById(Integer id);
 
-	Volunteer findByUserName(String username);
+	Volunteer findByUsername(String username);
 
 	List<Volunteer> findByActive(Boolean active);
 
 	// ----------UPDATE----------
 	Volunteer updateById(int id, Volunteer volunteer);
 
-	Volunteer updateByUserName(String username, Volunteer volunteer);
+	Volunteer updateByUsername(String username, Volunteer volunteer);
 
 	// ----------DELETE------------
 	Volunteer deleteById(int id);

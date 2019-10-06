@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Volunteer Tracker</title>
+<script src="js/script.js"></script>
+<link rel='stylesheet' type='text/css' href='index.css'>
+</head>
+<body>
+	<!-- <h1>Volunteer Tracker</h1> -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-md-8">
+				<div>
+					<em><h1>This Is The Dog Gone It Volunteer Site</h1></em> <br>
+					<h2>Here We Can Share Information About Our Volunteers.</h2>
+					<br>
+					<h2>Our Goal Is To Connect Fosters For No Kill Shelters</h2>
+					<h2>We Gladly Except New Volunteers</h2>
+					<h2>Currently Here Are Your Options</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	View all volunteers
+	<form name="allVol">
+		<button name="volAll">See All Volunteers</button>
+	</form>
+	<div id="outAll">
+		<table id="table1">
+		<thead>
+		<tr>
+		<th>ID</th>
+		<th>--User Log In Name</th>
+		<th>----------1st Name</th>
+		<th>L Name</th>
+		<th>Active</th>
+		<th>Dog Size</th>
+		<th>Breeds</th>
+		</tr>
+		</thead>
+		<br>
+		<tbody id="tablebody"></tbody>		
+		</table>
+	</div>
+	
+	<br> Find volunteer by i.d.
+	<form name="volById">
+		<input type="number" name="volId">
+		<button name="volById">Get Volunteer By Id</button>
+	</form>
+	<div id="outputById"></div>
+	
+	<br> Find volunteer by username(email address)
+	<form name="volByUN">
+		<input type="text" name="volUN">
+		<button name="volByUN">Get Volunteer By User Name</button>
+	</form>
+	<div id="outputByUN"></div>
+	
+	<br> Find active volunteers who are currently available
+	<form name="active">
+		<!-- <input type="number" name="volId"> -->
+		<button name="volActive">See All Active Volunteers</button>
+	</form>
+	<div id="outActive"></div>
+
+	<br> To update your volunteer information by your i.d.
+
+	<br> To update your volunteer information by your user name(email
+	address)
+
+	<br> To delete your listing from our list
+
+	<br> Most Important - To Become A Volunteer
+
+	<br>
+
+</body>
+</html>
