@@ -3,7 +3,7 @@ window.addEventListener('load', function(e) {
 	init();
 });
 
-function init() {// removed evt in parathases
+function init() {
 	console.log("init()");
 
 	document.allVol.volAll.addEventListener('click', function(e) {
@@ -21,29 +21,26 @@ function init() {// removed evt in parathases
 		e.preventDefault();
 		let volUN = document.volByUN.volUN.value;
 		if (volUN != null) {
-			console.log('in the username listener');
+
 			getVolunteerByUN(volUN);
 		}
 	});
 	document.createVol.createVol.addEventListener('click', function(e) {
 		e.preventDefault();
-		console.log('in creat listener');
 		createNew(e);
 	});
 	
 }
 function getAll() {// ---------get all-------------------
-	console.log('in getAll');
+	
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", "/api/volunteer/");
-	console.log('after call');
+	
 	xhr.onreadystatechange = function() {
 		console.log('after function');
 		if (xhr.readyState === 4 && xhr.status < 400) {
-			console.log('before parse');
+			
 			let vol = JSON.parse(xhr.responseText);
-
-			console.log('in the get all to print' + vol);
 			displayAll(vol);
 		} else {
 			console.log('something went wrong in get all');
@@ -55,7 +52,7 @@ function getAll() {// ---------get all-------------------
 	xhr.send();
 }
 function displayAll(vol) { // ------------output all--------------------
-	console.log('in display all');
+	
 	let body = document.getElementById('tablebody');
 	body.textContent = '';//
 
@@ -151,12 +148,6 @@ function displayVolunteer(volunteer) {// -------------output by
 	form.appendChild(table);
 
 	let tr = document.createElement('tr');
-
-	// let outputById = document.getElementById('outputById');
-	// outputById.textContent = '';
-
-	// let ul = document.createElement("ul");
-	// outputById.appendChild(ul);
 
 	let td1 = document.createElement("td");
 	td1.textContent = volunteer.id;
@@ -285,9 +276,6 @@ function editForm(volunteer) {
 	in6a.value = 'small';	
 	form.appendChild(in6a);
 	
-//	let p2 = document.createElement('p');
-//	p2.textContent = 'Small';
-//	body.appendChild(p2);
 	
 	let br51 = document.createElement('br');
 	form.appendChild(br51);
@@ -298,9 +286,6 @@ function editForm(volunteer) {
 	in6b.value = 'medium';	
 	form.appendChild(in6b);
 	
-//	let p3 = document.createElement('p');
-//	p3.textContent = 'Medium';
-//	body.appendChild(p3);
 	
 	let br52 = document.createElement('br');
 	form.appendChild(br52);
@@ -311,9 +296,6 @@ function editForm(volunteer) {
 	in6c.value = 'large';	
 	form.appendChild(in6c);
 	
-//	let p4 = document.createElement('p');
-//	p4.textContent = 'Large';
-//	body.appendChild(p4);
 	
 	let br53 = document.createElement('br');
 	form.appendChild(br53);
@@ -323,10 +305,6 @@ function editForm(volunteer) {
 	in6d.name = 'size all';
 	in6d.value = 'all';	
 	form.appendChild(in6d);
-	
-//	let p5 = document.createElement('p');
-//	p1.textContent = 'All';
-//	body.appendChild(p5);
 	
 	let br6 = document.createElement('br');
 	form.appendChild(br6);
@@ -354,8 +332,7 @@ function editForm(volunteer) {
 }
 function editMe(vid, volunteer){
 	let form =event.target.parentElement;
-	
-	
+		
 	let volE = {
 			id : form.id.value,
 			username : form.username.value,
@@ -381,9 +358,8 @@ function editMe(vid, volunteer){
 	};
 	xhr.send(JSON.stringify(volE));
 }
-function getVolunteerByUN(volUN) {// -------------get by
-	// username---------------
-	console.log('in get by UN');
+function getVolunteerByUN(volUN) {
+	
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", "/api/volunteer/username/" + volUN);
 	xhr.onreadystatechange = function() {
@@ -400,8 +376,7 @@ function getVolunteerByUN(volUN) {// -------------get by
 	};
 	xhr.send();
 }
-function displayVolunteerByUN(volunteer) {// ------------output by
-	// username--------
+function displayVolunteerByUN(volunteer) {
 	let outputByUN = document.getElementById('outputByUN');
 	outputByUN.textContent = '';
 
@@ -434,7 +409,7 @@ function displayVolunteerByUN(volunteer) {// ------------output by
 }
 function createNew() {
 	let form = document.createVol;
-	console.log('in create new');
+	
 	if (form.username.value !== '' && form.password.value !== ''
 			&& form.firstname.value !== '' && form.lastname.value !== '') {
 		let volC = {
@@ -447,7 +422,7 @@ function createNew() {
 			breeds : form.breeds.value
 		}
 		let xhr = new XMLHttpRequest();
-		xhr.open('POST', 'api/volunteer', true);
+		xhr.open('POST', '/api/volunteer', true);
 		xhr.setRequestHeader('Content-type', 'application/json');
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === 4 && xhr.status < 400) {
@@ -466,7 +441,7 @@ function createNew() {
 	}
 }
 function deleteMeById(Did) {
-	console.log('in the delete function' + Did);
+	
 	let xhr = new XMLHttpRequest();
 	xhr.open('DELETE', '/api/volunteer/' + Did);
 	xhr.onreadystatechange = function() {
