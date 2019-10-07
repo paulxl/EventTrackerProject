@@ -231,7 +231,7 @@ function editForm(volunteer) {
 	in1.type = 'text';
 	in1.name = 'username';
 	in1.size = '40';
-	in1.placeholder = volunteer.username;
+	in1.value = volunteer.username;
 	form.appendChild(in1);
 	let br1 = document.createElement('br');
 	form.appendChild(br1);
@@ -239,7 +239,7 @@ function editForm(volunteer) {
 	in2.type = 'text';
 	in2.name = 'password';
 	in2.size = '40';
-	in2.placeholder = volunteer.password;
+	in2.value = volunteer.password;
 	form.appendChild(in2);
 	let br2 = document.createElement('br');
 	form.appendChild(br2);
@@ -247,7 +247,7 @@ function editForm(volunteer) {
 	in3.type = 'text';
 	in3.name = 'firstname';
 	in3.size = '40';
-	in3.placeholder = volunteer.firstname;
+	in3.value = volunteer.firstname;
 	form.appendChild(in3);
 	let br3 = document.createElement('br');
 	form.appendChild(br3);
@@ -255,48 +255,87 @@ function editForm(volunteer) {
 	in4.type = 'text';
 	in4.name = 'lastname';
 	in4.size = '40';
-	in4.placeholder = volunteer.lastname;
+	in4.value = volunteer.lastname;
 	form.appendChild(in4);
 	let br4 = document.createElement('br');
 	form.appendChild(br4);
-	// let in5 = document.createElement('select');
-	// in5.name ='active';
-	// in5.option.value = 'true';
-	// in5.option.value = 'false';
-	// form.appendChild(in5);
+	
+	 let in5 = document.createElement('SELECT');
+	 in5.setAttribute('id','active');
+	 form.appendChild(in5);
+	 
+	 let in5a = document.createElement('option');
+	 in5a.setAttribute('value','true');
+	 let in5b = document.createTextNode('Yes');
+	 in5a.appendChild(in5b);
+	 in5.appendChild(in5a);
+	 
+	 let in5c = document.createElement('option');
+	 in5c.setAttribute('value','false');
+	 let in5d = document.createTextNode('No');
+	 in5c.appendChild(in5d);
+	 in5.appendChild(in5c);
+	 
 	let br5 = document.createElement('br');
 	form.appendChild(br5);
+	
 	let in6a = document.createElement('input');
 	in6a.type = "checkbox";
 	in6a.name = 'size sm';
-	in6a.value = 'small';
-	in6a.placeholder = volunteer.size;
+	in6a.value = 'small';	
 	form.appendChild(in6a);
+	
+//	let p2 = document.createElement('p');
+//	p2.textContent = 'Small';
+//	body.appendChild(p2);
+	
+	let br51 = document.createElement('br');
+	form.appendChild(br51);
+	
 	let in6b = document.createElement('input');
 	in6b.type = "checkbox";
 	in6b.name = 'size md';
-	in6b.value = 'medium';
-	in6b.placeholder = volunteer.size;
+	in6b.value = 'medium';	
 	form.appendChild(in6b);
+	
+//	let p3 = document.createElement('p');
+//	p3.textContent = 'Medium';
+//	body.appendChild(p3);
+	
+	let br52 = document.createElement('br');
+	form.appendChild(br52);
+	
 	let in6c = document.createElement('input');
 	in6c.type = "checkbox";
 	in6c.name = 'size lg';
-	in6c.value = 'large';
-	in6c.placeholder = volunteer.size;
+	in6c.value = 'large';	
 	form.appendChild(in6c);
+	
+//	let p4 = document.createElement('p');
+//	p4.textContent = 'Large';
+//	body.appendChild(p4);
+	
+	let br53 = document.createElement('br');
+	form.appendChild(br53);
+	
 	let in6d = document.createElement('input');
 	in6d.type = "checkbox";
 	in6d.name = 'size all';
-	in6d.value = 'all';
-	in6d.placeholder = volunteer.size;
+	in6d.value = 'all';	
 	form.appendChild(in6d);
+	
+//	let p5 = document.createElement('p');
+//	p1.textContent = 'All';
+//	body.appendChild(p5);
+	
 	let br6 = document.createElement('br');
 	form.appendChild(br6);
+	
 	let in7 = document.createElement('input');
 	in7.type = 'text';
 	in7.name = 'breeds';
 	in7.size = '40';
-	in7.placeholder = volunteer.breeds;
+	in7.value = volunteer.breeds;
 	form.appendChild(in7);
 	let btnE = document.createElement('input');
 	btnE.name = 'submit';
@@ -316,6 +355,7 @@ function editForm(volunteer) {
 function editMe(vid, volunteer){
 	let form =event.target.parentElement;
 	
+	
 	let volE = {
 			id : form.id.value,
 			username : form.username.value,
@@ -323,15 +363,15 @@ function editMe(vid, volunteer){
 			firstname : form.firstname.value,
 			lastname : form.lastname.value,
 			active : form.active.value,
-			size : form.size.value,
+			size : 'all',
 			breeds : form.breeds.value
 		}
-	let xhr = new XMLHRequest();
+	let xhr = new XMLHttpRequest();
 	xhr.open("PUT","/api/volunteer/"+volunteer.id );
 	xhr.setRequestHeader('Content-type', 'application/json');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState ===4 && xhr.status <400){
-			let volE = JSON.parse(xhr.responseText);
+			volE = JSON.parse(xhr.responseText);
 			console.log('sent update ');
 			getAll();
 		} else {
