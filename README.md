@@ -1,4 +1,4 @@
-### EVENT TRACKER
+## EVENT TRACKER
 
 ## Code Name: -Volunteer Tracker-
 
@@ -26,6 +26,9 @@ This application has the ability to do some basic CRUD funtionality using localh
 * The first four people have been hardcoded using MySQL Workbench and all functions work.
 * The database has eight columns including an auto-generated id field.  They include the following: username(preferable a email address), password, firstname, lastname, active(boolean, to indicate availability), size(as in dog size they are willing to foster, later to be turned into enum), and finally; breeds(as in if they have a preference). Username, password, firstname, and lastname are not-null fields and must be filled-in. The rest are optional.  
 
+## How To Use Update:
+This app now has a front end that can be run on a local server and when added to my AWS, can be ran on the web.
+
 ### Technologies Used:
 * Spring Tool Suite 4
 * Java (JPA/Spring Boot/Gradel)
@@ -37,6 +40,7 @@ This application has the ability to do some basic CRUD funtionality using localh
 * MAMP
 * Apache Tomcat server
 * Slack
+* *Javascript
 
 ### Lessons Learned
 * JPARepository and Service entities make life a whole easier.
@@ -48,3 +52,11 @@ This application has the ability to do some basic CRUD funtionality using localh
 
 ### Further Goals
 * I plan on growing this project to include the above tables and make it web friendly and easy to use.  Something a non-profit animal rescue group could easily use and implement.
+
+## Update:
+The second phase of this project was to create a front-end using a simple html document, supplemented and enhanced with a javascript file.  
+The javascript was the interface to the controller. It also populates the html file as CRUD is implemented.  Items are generally hidden until called for.
+
+## Updated Lessons Learned:
+Creating forms in javascript to send to html is ugly business and a lot of typing.  Forms are not easy to manipulate.  
+In addition because STS is not a very good editor for javascript, errors happen and can be tough to catch.  Additionally the logic is much different than we have used before.  
