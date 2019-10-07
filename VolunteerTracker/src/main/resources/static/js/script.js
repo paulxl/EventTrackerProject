@@ -21,15 +21,13 @@ function init() {
 		e.preventDefault();
 		let volUN = document.volByUN.volUN.value;
 		if (volUN != null) {
-
 			getVolunteerByUN(volUN);
 		}
 	});
 	document.createVol.createVol.addEventListener('click', function(e) {
 		e.preventDefault();
 		createNew(e);
-	});
-	
+	});	
 }
 function getAll() {// ---------get all-------------------
 	
@@ -37,13 +35,13 @@ function getAll() {// ---------get all-------------------
 	xhr.open("GET", "/api/volunteer/");
 	
 	xhr.onreadystatechange = function() {
-		console.log('after function');
+		
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			
 			let vol = JSON.parse(xhr.responseText);
 			displayAll(vol);
 		} else {
-			console.log('something went wrong in get all');
+			
 			let div = document.getElementById('outAll');
 			// div.textContent = 'Something went wrong, database not accessable
 			// at this time';
@@ -118,17 +116,16 @@ function displayAll(vol) { // ------------output all--------------------
 			+ '  volunteers in the database.';
 }
 
-function getVolunteer(volId) {// ---------------------get by
-	// id----------------
+function getVolunteer(volId) {
 	let xhr = new XMLHttpRequest();
 	xhr.open("GET", "/api/volunteer/" + volId);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 			let vol = JSON.parse(xhr.responseText);
 			displayVolunteer(vol);
-			console.log('in get vol about to print out' + vol);
+			
 		} else {
-			console.log('in the else =>400 status')
+			
 			let div = document.getElementById("outputById");
 			div.textContent = 'Volunteer I.D. Not Found';
 		}
@@ -136,8 +133,7 @@ function getVolunteer(volId) {// ---------------------get by
 	xhr.send();
 }
 
-function displayVolunteer(volunteer) {// -------------output by
-	// id--------------
+function displayVolunteer(volunteer) {
 	let body = document.getElementById('outputById');
 	body.textContent = '';//
 
@@ -203,7 +199,7 @@ function displayVolunteer(volunteer) {// -------------output by
 
 	sub2.addEventListener('click', function(e) {
 		e.preventDefault();
-		console.log('in delete listener');
+		
 		deleteMeById(volunteer.id);
 		
 	});
@@ -275,8 +271,7 @@ function editForm(volunteer) {
 	in6a.name = 'size sm';
 	in6a.value = 'small';	
 	form.appendChild(in6a);
-	
-	
+		
 	let br51 = document.createElement('br');
 	form.appendChild(br51);
 	
@@ -285,8 +280,7 @@ function editForm(volunteer) {
 	in6b.name = 'size md';
 	in6b.value = 'medium';	
 	form.appendChild(in6b);
-	
-	
+		
 	let br52 = document.createElement('br');
 	form.appendChild(br52);
 	
@@ -295,8 +289,7 @@ function editForm(volunteer) {
 	in6c.name = 'size lg';
 	in6c.value = 'large';	
 	form.appendChild(in6c);
-	
-	
+		
 	let br53 = document.createElement('br');
 	form.appendChild(br53);
 	
@@ -322,7 +315,7 @@ function editForm(volunteer) {
 
 	btnE.addEventListener('click', function(e) {
 		e.preventDefault();
-		console.log('in edit listener');
+		
 		editMe(volunteer.id, volunteer);
 		
 	});
@@ -331,8 +324,7 @@ function editForm(volunteer) {
 
 }
 function editMe(vid, volunteer){
-	let form =event.target.parentElement;
-		
+	let form =event.target.parentElement;		
 	let volE = {
 			id : form.id.value,
 			username : form.username.value,
@@ -366,7 +358,7 @@ function getVolunteerByUN(volUN) {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 
 			let vol = JSON.parse(xhr.responseText);
-			console.log('in get vol by username about to print out' + vol);
+			
 			displayVolunteerByUN(vol);
 		} else {
 			console.log('in else of get by UN');
@@ -427,7 +419,7 @@ function createNew() {
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState === 4 && xhr.status < 400) {
 				volC = JSON.parse(xhr.responseText);
-				console.log('sent create new vol');
+				
 				getAll();
 			} else {
 				let div = document.getElementById('createData');
@@ -446,10 +438,10 @@ function deleteMeById(Did) {
 	xhr.open('DELETE', '/api/volunteer/' + Did);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
-			console.log('went thur at delete');
-			// let dv = JSON.parse(xhr.responseText);
+			
+			let dv = JSON.parse(xhr.responseText);
 		} else {
-			console.log('in else of delete');
+			
 			let div = document.getElementById("editDelete");
 			div.textContent = 'Error in trying to delete';
 		}
