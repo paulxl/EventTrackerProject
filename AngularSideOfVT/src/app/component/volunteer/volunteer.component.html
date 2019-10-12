@@ -1,0 +1,57 @@
+<h2>Currently Here Are Your Options</h2>
+
+<div id='VolunteerList' *ngIf='true'>
+    <table id='allTable'>
+        <thead>
+            <tr>
+                <th>ID Number</th>
+                <th>Email Address</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Active Y/N</th>
+            </tr>
+            <tr *ngFor="let vol of vols">
+                <td (click)="displayVolunteer(vol)" type='button' style=background-color:beige>{{vol.id}}</td>
+                <td>{{vol.username}}</td>
+                <td>{{vol.firstname}}</td>
+                <td>{{vol.lastname}}</td>
+                <td>{{vol.active}}</td>
+            </tr>
+        </thead>
+    </table>
+    <br><br>
+
+</div>
+<div id='displayVolunteer' *ngIf='selected && !editVolunteer'>
+    <table>
+        <thead>
+            <tr>
+                <th>ID </th>
+                <th>Email Address :</th>
+                <th>First Name :</th>
+                <th>Last Name :</th>
+                <th>Active Foster</th>
+                <th>Size of Dogs Willing</th>
+                <th>Breeds Willing to Foster</th>
+            </tr>
+            <tr>
+                <td>{{selected.id}}</td>
+                <td>{{selected.username}} </td>
+                <td> {{selected.firstname}} </td>
+                <td> {{selected.lastname}} </td>
+                <td> {{selected.active}} </td>
+                <td> {{selected.size}} </td>
+                <td> {{selected.breeds}} </td>
+            </tr>
+
+
+            <button (click)="displayTable()" style="margin: 20px">Main Table</button>
+            <button (click)="setEditVolunteer()" style="margin: 20px">Edit</button>
+
+
+        </thead>
+    </table>
+
+
+
+</div>
