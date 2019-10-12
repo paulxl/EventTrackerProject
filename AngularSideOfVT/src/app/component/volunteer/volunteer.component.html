@@ -1,5 +1,5 @@
 <h2>Currently Here Are Your Options</h2>
-<div id='VolunteerList' *ngIf='true'>
+<div id='VolunteerList' *ngIf='!selected'>
     <table id='allTable'>
         <thead>
             <tr>
@@ -21,7 +21,7 @@
     <h3>Click on the ID number to see more about this volunteer.</h3>
     <br><br>
 </div>
-<div id='displayVolunteer' *ngIf='selected && !editVolunteer'>
+<div id='displayVolunteer' *ngIf='selected'>
     <table>
         <thead>
             <tr>
@@ -42,8 +42,10 @@
                 <td> {{selected.size}} </td>
                 <td> {{selected.breeds}} </td>
             </tr>
-            <button (click)="displayTable()" style="margin: 20px">Main Table</button>
-            <button (click)="setEditVolunteer()" style="margin: 20px">Edit</button>
+            <button (click)="displayTable()" style="margin: 20px">MAIN PAGE</button>
+            <button (click)="setEditVol()" style="margin: 20px">EDIT</button>
+            <button (click)="deleteVol(selected.id)">DELETE</button>
+
         </thead>
     </table>
 </div>
@@ -52,7 +54,8 @@
         <input type='text' name='username' [(ngModel)]="newVol.username" size='40' placeholder='username/email_address'><br>
         <input type='text' name='password' [(ngModel)]="newVol.password" size='40' placeholder='password'><br>
         <input type='text' name='firstname' [(ngModel)]="newVol.firstname" size='40' placeholder='firstname'><br>
-        <input type='text' name='lastname' [(ngModel)]="newVol.lastname" size='40' placeholder='lastname'><br><br> Able To Volunteer Now?
+        <input type='text' name='lastname' [(ngModel)]="newVol.lastname" size='40' placeholder='lastname'>
+        <br><br> Able To Volunteer Now?
         <select name='active' [(ngModel)]="newVol.active">
             <option value='true'>Yes</option>
             <option value='false'>No</option>
@@ -65,12 +68,33 @@
             <option value="medium / large">Medium / Large</option>
             <option value="large">Large</option>
         </select><br><br>
-        <!-- <input type="checkbox" name='size' value='small' [(ngModel)]="newVol.size">Small<br>
-        <input type='checkbox' name='size' value='medium' [(ngModel)]="newVol.size">Medium<br>
-        <input type='checkbox' name='size' value='large' [(ngMode)]l="newVol.size">Large<br>
-        <input type='checkbox' name='size' value='all' [(ngModel)]="newVol.size">All<br> -->
         <input type='text' name='breeds' [(ngModel)]="newVol.breeds" size='40' placeholder='Breeds Your Willing To Foster'><br>
         <button type="submit" (click)="addNewVol()" name="createVol" style=background-color:chartreuse>Click To Become A Volunteer</button>
+    </form>
+</div>
+<div id="editVol" *ngIf="editVol">
+    <form>
+        <input type='text' name='editUsername' [(ngModel)]="editVol.username" size='40' placeholder={{selected.username}} /><br>
+        <input type='text' name='editPassword' [(ngModel)]="editVol.password" size='40' placeholder={{selected.password}} /><br>
+        <input type='text' name='editFirstname' [(ngModel)]="editVol.firstname" size='40' placeholder={{selected.firstname}} /><br>
+        <input type='text' name='editLastname' [(ngModel)]="editVol.lastname" size='40' placeholder={{selected.lastname}} />
+        <br><br> Able To Volunteer Now?
+        <select name='active' [(ngModel)]="editVol.active">
+                <option value='true'>Yes</option>
+                <option value='false'>No</option>
+                </select><br><br> Dog Size Your Willing To Foster :
+        <select name="size" [(ngModel)]="editVol.size">
+                <option value="all">All</option>
+                <option value="small">Small</option>
+                <option value="small / medium">Small / Medium</option>
+                <option value="medium">Medium</option>
+                <option value="medium / large">Medium / Large</option>
+                <option value="large">Large</option>
+            </select><br><br>
+        <input type='text' name='editBreeds' [(ngModel)]="editVol.breeds" size='40' placeholder={{selected.breeds}} /><br>
+        <button (click)="editVol = null">CANCEL</button>
+        <button (click)="updateVol()" style=background-color:chartreuse>SAVE</button>
+        <button (click)="displayTable()" style="margin: 20px">MAIN PAGE</button>
 
     </form>
 

@@ -15,7 +15,7 @@ export class VolunteerComponent implements OnInit {
   title = 'Volunteer Tracker';
   vols: Volunteer[] = [];
   editVol: Volunteer = null;
-   editVolunteer: Volunteer;
+  // editVolunteer: Volunteer;
 
 
   // Constructor
@@ -58,8 +58,8 @@ export class VolunteerComponent implements OnInit {
     );
   }
   updateVol() {
-    //this.date();
-    this.volServ.update(this.editVolunteer).subscribe(
+    
+    this.volServ.update(this.editVol).subscribe(
       data => {
         this.reload();
       },
@@ -69,7 +69,7 @@ export class VolunteerComponent implements OnInit {
     );
   }
   setEditVol() {
-    this.editVolunteer = Object.assign({}, this.selected);
+    this.editVol = Object.assign({}, this.selected);
   }
   deleteVol(id: number) {
     this.volServ.destroy(id).subscribe(
