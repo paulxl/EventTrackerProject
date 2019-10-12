@@ -45,7 +45,7 @@ export class VolunteerComponent implements OnInit {
     this.selected = vol;
   }
 
-  addNewTodo() {
+  addNewVol() {
 
     this.volServ.create(this.newVol).subscribe(
       data => {
@@ -57,7 +57,7 @@ export class VolunteerComponent implements OnInit {
       }
     );
   }
-  updateTodo() {
+  updateVol() {
     //this.date();
     this.volServ.update(this.editVolunteer).subscribe(
       data => {
@@ -68,10 +68,10 @@ export class VolunteerComponent implements OnInit {
       }
     );
   }
-  setEditVolunteer() {
+  setEditVol() {
     this.editVolunteer = Object.assign({}, this.selected);
   }
-  deleteVolunteer(id: number) {
+  deleteVol(id: number) {
     this.volServ.destroy(id).subscribe(
       data => {
         this.reload();

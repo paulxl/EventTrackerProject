@@ -1,5 +1,4 @@
 <h2>Currently Here Are Your Options</h2>
-
 <div id='VolunteerList' *ngIf='true'>
     <table id='allTable'>
         <thead>
@@ -19,8 +18,8 @@
             </tr>
         </thead>
     </table>
+    <h3>Click on the ID number to see more about this volunteer.</h3>
     <br><br>
-
 </div>
 <div id='displayVolunteer' *ngIf='selected && !editVolunteer'>
     <table>
@@ -43,14 +42,37 @@
                 <td> {{selected.size}} </td>
                 <td> {{selected.breeds}} </td>
             </tr>
-
-
             <button (click)="displayTable()" style="margin: 20px">Main Table</button>
             <button (click)="setEditVolunteer()" style="margin: 20px">Edit</button>
-
-
         </thead>
     </table>
+</div>
+<div id="createNewVolunteer" *ngIf="!selected">
+    <form name='createNewVolunteer'>
+        <input type='text' name='username' [(ngModel)]="newVol.username" size='40' placeholder='username/email_address'><br>
+        <input type='text' name='password' [(ngModel)]="newVol.password" size='40' placeholder='password'><br>
+        <input type='text' name='firstname' [(ngModel)]="newVol.firstname" size='40' placeholder='firstname'><br>
+        <input type='text' name='lastname' [(ngModel)]="newVol.lastname" size='40' placeholder='lastname'><br><br> Able To Volunteer Now?
+        <select name='active' [(ngModel)]="newVol.active">
+            <option value='true'>Yes</option>
+            <option value='false'>No</option>
+            </select><br><br> Dog Size Your Willing To Foster :
+        <select name="size" [(ngModel)]="newVol.size">
+            <option value="all">All</option>
+            <option value="small">Small</option>
+            <option value="small / medium">Small / Medium</option>
+            <option value="medium">Medium</option>
+            <option value="medium / large">Medium / Large</option>
+            <option value="large">Large</option>
+        </select><br><br>
+        <!-- <input type="checkbox" name='size' value='small' [(ngModel)]="newVol.size">Small<br>
+        <input type='checkbox' name='size' value='medium' [(ngModel)]="newVol.size">Medium<br>
+        <input type='checkbox' name='size' value='large' [(ngMode)]l="newVol.size">Large<br>
+        <input type='checkbox' name='size' value='all' [(ngModel)]="newVol.size">All<br> -->
+        <input type='text' name='breeds' [(ngModel)]="newVol.breeds" size='40' placeholder='Breeds Your Willing To Foster'><br>
+        <button type="submit" (click)="addNewVol()" name="createVol" style=background-color:chartreuse>Click To Become A Volunteer</button>
+
+    </form>
 
 
 
