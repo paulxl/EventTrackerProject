@@ -1,11 +1,22 @@
-<h2>Currently Here Are Your Options</h2>
+<!-- <h2>Currently Here Are Your Options</h2> -->
 <!-- <button (click)="displayTable()" id="btn3">MAIN PAGE</button> -->
 
+<head>
+    <style>
+        img {
+            float: right;
+            width: 600px;
+            height: 900px;
+        }
+    </style>
+</head>
 <div id='VolunteerList' *ngIf='!selected'>
+    <p><img src='/assets/photos/IMG_1943.jpg'></p>
     <table id='allTable'>
+        <!-- <img src="IMG_1943.jpg" style="float: right; width: 150px; height: 300px; "> -->
         <thead>
             <tr>
-                <th>ID Number</th>
+                <th>: ID : </th>
                 <th>Email Address</th>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -26,12 +37,13 @@
     <h3>To Become A Volunteer With Us : </h3>
     <button (click)="toggle()" id='btn1'>Click Here / Or To Return</button>
     <br><br>
+
 </div>
 <div id='displayVolunteer' *ngIf='selected'>
     <table>
         <thead>
             <tr>
-                <th id="th1">ID </th>
+                <th id="th1">: Id :</th>
                 <th>Email Address :</th>
                 <th>First Name :</th>
                 <th>Last Name :</th>
