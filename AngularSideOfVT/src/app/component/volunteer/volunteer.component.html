@@ -5,48 +5,53 @@
     <style>
         img {
             float: right;
-            width: 600px;
-            height: 900px;
+            width: 40%;
+            height: 40%;
         }
     </style>
+
 </head>
 <div id='VolunteerList' *ngIf='!selected'>
-    <p><img src='/assets/photos/IMG_1943.jpg'></p>
-    <table id='allTable'>
-        <!-- <img src="IMG_1943.jpg" style="float: right; width: 150px; height: 300px; "> -->
-        <thead>
-            <tr>
-                <th>: ID : </th>
-                <th>Email Address</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Active True/False</th>
-            </tr>
-            <tr *ngFor="let vol of vols">
-                <td (click)="displayVolunteer(vol)" type='button' style=background-color:beige>{{vol.id}}</td>
-                <td>{{vol.username}}</td>
-                <td>{{vol.firstname}}</td>
-                <td>{{vol.lastname}}</td>
-                <td>{{vol.active}}</td>
-            </tr>
-        </thead>
-    </table>
-    <h2> Currently there are :{{getVolCount()}} active fosters.</h2>
-    <h3>Just Click on the ID number to see more about this volunteer.</h3>
+    <p>
+        <img src='/assets/photos/IMG_1943.jpg'></p>
+    <h4>
+        <table id='allTable '>
+            <!--class="table table-bordered"-->
+            <!-- <img src="IMG_1943.jpg" style="float: right; width: 150px; height: 300px; "> -->
+            <thead>
+                <tr>
+                    <th> ID </th>
+                    <!-- <th>Email Address</th> -->
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Active </th>
+                </tr>
+                <tr *ngFor="let vol of vols">
+                    <td (click)="displayVolunteer(vol)" type='button ' width='5% ' style=background-color:beige>{{vol.id}}</td>
+                    <!-- <td>{{vol.username}}</td> -->
+                    <td>{{vol.firstname}}</td>
+                    <td>{{vol.lastname}}</td>
+                    <td>{{vol.active}}</td>
+                </tr>
+            </thead>
+        </table>
+    </h4>
+    <h3> Currently there are :&nbsp;&nbsp;{{getVolCount()}} active fosters.</h3>
+    <h3>Just Click on the ID number to see more about this volunteer.</h3><br><br>
 
     <h3>To Become A Volunteer With Us : </h3>
-    <button (click)="toggle()" id='btn1'>Click Here / Or To Return</button>
+    <h3> <button (click)="toggle()" id='btn1'>Click Here / Or To Return</button></h3>
     <br><br>
 
 </div>
-<div id='displayVolunteer' *ngIf='selected'>
+<div id='displayVolunteer ' *ngIf='selected '>
     <table>
         <thead>
             <tr>
-                <th id="th1">: Id :</th>
-                <th>Email Address :</th>
-                <th>First Name :</th>
-                <th>Last Name :</th>
+                <th id="th1"> Id </th>
+                <th>Email Address </th>
+                <th>First Name </th>
+                <th>Last Name </th>
                 <th>Active Foster</th>
                 <th>Size of Dogs Willing</th>
                 <th>Breeds Willing to Foster</th>
@@ -69,15 +74,15 @@
 
 </div>
 <div id="createNewVolunteer" *ngIf="show && !selected">
-    <form name='createNewVolunteer'>
-        <input type='text' name='username' [(ngModel)]="newVol.username" size='40' placeholder='username/email_address'><br>
-        <input type='text' name='password' [(ngModel)]="newVol.password" size='40' placeholder='password'><br>
-        <input type='text' name='firstname' [(ngModel)]="newVol.firstname" size='40' placeholder='firstname'><br>
-        <input type='text' name='lastname' [(ngModel)]="newVol.lastname" size='40' placeholder='lastname'>
+    <form name='createNewVolunteer '>
+        <input type='text ' name='username ' [(ngModel)]="newVol.username" size='40 ' placeholder='username/email_address '><br>
+        <input type='text ' name='password ' [(ngModel)]="newVol.password" size='40 ' placeholder='password '><br>
+        <input type='text ' name='firstname ' [(ngModel)]="newVol.firstname" size='40 ' placeholder='firstname '><br>
+        <input type='text ' name='lastname ' [(ngModel)]="newVol.lastname" size='40 ' placeholder='lastname '>
         <br><br> Able To Volunteer Now?
-        <select name='active' [(ngModel)]="newVol.active">
-            <option value='true'>Yes</option>
-            <option value='false'>No</option>
+        <select name='active ' [(ngModel)]="newVol.active">
+            <option value='true '>Yes</option>
+            <option value='false '>No</option>
             </select><br><br> Dog Size Your Willing To Foster :
         <select name="size" [(ngModel)]="newVol.size">
             <option value="all">All</option>
@@ -87,7 +92,7 @@
             <option value="medium / large">Medium / Large</option>
             <option value="large">Large</option>
         </select><br><br>
-        <input type='text' name='breeds' [(ngModel)]="newVol.breeds" size='40' placeholder='Breeds Your Willing To Foster'><br>
+        <input type='text ' name='breeds ' [(ngModel)]="newVol.breeds" size='40 ' placeholder='Breeds Your Willing To Foster '><br>
         <button type="submit" (click)="addNewVol()" name="createVol" id="btn2">Click To Become A Volunteer</button>
         <!-- <br>  -->
     </form>
@@ -96,14 +101,14 @@
 
 <div id="editVol" *ngIf="selected && editVol">
     <form>
-        User Name / Email <input type='text' name='editUsername' [(ngModel)]="editVol.username" size='40' placeholder={{selected.username}}/>
-        <br> Password <input type='password' name='editPassword' [(ngModel)]="editVol.password" size='40' placeholder={{selected.password}}/>
-        <br> First Name <input type='text' name='editFirstname' [(ngModel)]="editVol.firstname" size='40' placeholder={{selected.firstname}}/>
-        <br> Last Name <input type='text' name='editLastname' [(ngModel)]="editVol.lastname" size='40' placeholder={{selected.lastname}} />
+        User Name / Email <input type='text ' name='editUsername ' [(ngModel)]="editVol.username" size='40 ' placeholder={{selected.username}}/>
+        <br> Password <input type='password ' name='editPassword ' [(ngModel)]="editVol.password" size='40 ' placeholder={{selected.password}}/>
+        <br> First Name <input type='text ' name='editFirstname ' [(ngModel)]="editVol.firstname" size='40 ' placeholder={{selected.firstname}}/>
+        <br> Last Name <input type='text ' name='editLastname ' [(ngModel)]="editVol.lastname" size='40 ' placeholder={{selected.lastname}} />
         <br><br> Able To Volunteer Now?
-        <select name='active' [(ngModel)]="editVol.active">
-                <option value='true'>Yes</option>
-                <option value='false'>No</option>
+        <select name='active ' [(ngModel)]="editVol.active">
+                <option value='true '>Yes</option>
+                <option value='false '>No</option>
                 </select><br><br> Dog Size Your Willing To Foster :
         <select name="size" [(ngModel)]="editVol.size">
                 <option value="all">All</option>
@@ -113,7 +118,7 @@
                 <option value="medium / large">Medium / Large</option>
                 <option value="large">Large</option>
             </select><br><br>
-        <input type='text' name='editBreeds' [(ngModel)]="editVol.breeds" size='40' placeholder={{selected.breeds}} /><br>
+        <input type='text ' name='editBreeds ' [(ngModel)]="editVol.breeds" size='40 ' placeholder={{selected.breeds}} /><br>
         <button (click)="editVol = null">CANCEL</button>
         <button (click)="updateVol()" id="btn4">SAVE</button>
         <button (click)="displayTable()">MAIN PAGE</button>

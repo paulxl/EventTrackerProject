@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VolunteerComponent } from './component/volunteer/volunteer.component';
 import { FormsModule } from '@angular/forms';
-
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     HttpClientModule
+    // NgbModule.forRoot(),
   ],
   providers: [
     VolunteerService
