@@ -1,4 +1,6 @@
 <h2>Currently Here Are Your Options</h2>
+<!-- <button (click)="displayTable()" id="btn3">MAIN PAGE</button> -->
+
 <div id='VolunteerList' *ngIf='!selected'>
     <table id='allTable'>
         <thead>
@@ -7,7 +9,7 @@
                 <th>Email Address</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Active Y/N</th>
+                <th>Active True/False</th>
             </tr>
             <tr *ngFor="let vol of vols">
                 <td (click)="displayVolunteer(vol)" type='button' style=background-color:beige>{{vol.id}}</td>
@@ -18,14 +20,18 @@
             </tr>
         </thead>
     </table>
-    <h3>Click on the ID number to see more about this volunteer.</h3>
+    <h2> Currently there are :{{getVolCount()}} active fosters.</h2>
+    <h3>Just Click on the ID number to see more about this volunteer.</h3>
+
+    <h3>To Become A Volunteer With Us : </h3>
+    <button (click)="toggle()" id='btn1'>Click Here / Or To Return</button>
     <br><br>
 </div>
 <div id='displayVolunteer' *ngIf='selected'>
     <table>
         <thead>
             <tr>
-                <th>ID </th>
+                <th id="th1">ID </th>
                 <th>Email Address :</th>
                 <th>First Name :</th>
                 <th>Last Name :</th>
@@ -42,14 +48,15 @@
                 <td> {{selected.size}} </td>
                 <td> {{selected.breeds}} </td>
             </tr>
-            <button (click)="displayTable()" style="margin: 20px">MAIN PAGE</button>
-            <button (click)="setEditVol()" style="margin: 20px">EDIT</button>
-            <button (click)="deleteVol(selected.id)">DELETE</button>
 
         </thead>
     </table>
+    <button (click)="displayTable()" id="btn3">MAIN PAGE</button>
+    <button (click)="setEditVol()" style="margin: 20px">EDIT</button>
+    <button (click)="deleteVol(selected.id)" style="margin: 20px">DELETE</button>
+
 </div>
-<div id="createNewVolunteer" *ngIf="!selected">
+<div id="createNewVolunteer" *ngIf="show && !selected">
     <form name='createNewVolunteer'>
         <input type='text' name='username' [(ngModel)]="newVol.username" size='40' placeholder='username/email_address'><br>
         <input type='text' name='password' [(ngModel)]="newVol.password" size='40' placeholder='password'><br>
@@ -69,15 +76,18 @@
             <option value="large">Large</option>
         </select><br><br>
         <input type='text' name='breeds' [(ngModel)]="newVol.breeds" size='40' placeholder='Breeds Your Willing To Foster'><br>
-        <button type="submit" (click)="addNewVol()" name="createVol" style=background-color:chartreuse>Click To Become A Volunteer</button>
+        <button type="submit" (click)="addNewVol()" name="createVol" id="btn2">Click To Become A Volunteer</button>
+        <!-- <br>  -->
     </form>
+    <!-- <button (click)="displayTable()">MAIN PAGE</button> -->
 </div>
-<div id="editVol" *ngIf="editVol">
+
+<div id="editVol" *ngIf="selected && editVol">
     <form>
-        <input type='text' name='editUsername' [(ngModel)]="editVol.username" size='40' placeholder={{selected.username}} /><br>
-        <input type='text' name='editPassword' [(ngModel)]="editVol.password" size='40' placeholder={{selected.password}} /><br>
-        <input type='text' name='editFirstname' [(ngModel)]="editVol.firstname" size='40' placeholder={{selected.firstname}} /><br>
-        <input type='text' name='editLastname' [(ngModel)]="editVol.lastname" size='40' placeholder={{selected.lastname}} />
+        User Name / Email <input type='text' name='editUsername' [(ngModel)]="editVol.username" size='40' placeholder={{selected.username}}/>
+        <br> Password <input type='password' name='editPassword' [(ngModel)]="editVol.password" size='40' placeholder={{selected.password}}/>
+        <br> First Name <input type='text' name='editFirstname' [(ngModel)]="editVol.firstname" size='40' placeholder={{selected.firstname}}/>
+        <br> Last Name <input type='text' name='editLastname' [(ngModel)]="editVol.lastname" size='40' placeholder={{selected.lastname}} />
         <br><br> Able To Volunteer Now?
         <select name='active' [(ngModel)]="editVol.active">
                 <option value='true'>Yes</option>
@@ -93,11 +103,7 @@
             </select><br><br>
         <input type='text' name='editBreeds' [(ngModel)]="editVol.breeds" size='40' placeholder={{selected.breeds}} /><br>
         <button (click)="editVol = null">CANCEL</button>
-        <button (click)="updateVol()" style=background-color:chartreuse>SAVE</button>
-        <button (click)="displayTable()" style="margin: 20px">MAIN PAGE</button>
-
+        <button (click)="updateVol()" id="btn4">SAVE</button>
+        <button (click)="displayTable()">MAIN PAGE</button>
     </form>
-
-
-
 </div>

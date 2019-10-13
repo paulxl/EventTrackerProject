@@ -15,9 +15,8 @@ export class VolunteerComponent implements OnInit {
   title = 'Volunteer Tracker';
   vols: Volunteer[] = [];
   editVol: Volunteer = null;
-  // editVolunteer: Volunteer;
-
-
+  createVol: Volunteer = null;
+  
   // Constructor
 
   constructor(private volServ : VolunteerService) {
@@ -30,7 +29,13 @@ export class VolunteerComponent implements OnInit {
     this.reload();
   }
   getVolCount(): number {
-    return this.vols.length;
+    let result =0;
+    for(let i=0; i<this.vols.length; i++){
+      if(this.vols[i].active == true){
+        result++;
+      }
+    } return result;
+   // return this.vols.length;
   }
   reload(){
     this.volServ.index().subscribe(
@@ -46,7 +51,6 @@ export class VolunteerComponent implements OnInit {
   }
 
   addNewVol() {
-
     this.volServ.create(this.newVol).subscribe(
       data => {
         this.newVol = new Volunteer();
@@ -58,7 +62,6 @@ export class VolunteerComponent implements OnInit {
     );
   }
   updateVol() {
-    
     this.volServ.update(this.editVol).subscribe(
       data => {
         this.reload();
@@ -67,10 +70,12 @@ export class VolunteerComponent implements OnInit {
         console.error('Error in vol component update' + err);
       }
     );
+
   }
   setEditVol() {
     this.editVol = Object.assign({}, this.selected);
   }
+  
   deleteVol(id: number) {
     this.volServ.destroy(id).subscribe(
       data => {
@@ -81,5 +86,13 @@ export class VolunteerComponent implements OnInit {
       }
     );
   }
+  toggle(){
+    this.show = !this.show;
+   // this.show = this.newVol;
+  }
+ // show: Volunteer = null;
+  show: boolean = false;
+//show: Volunteer=null;
+ 
 
 }
