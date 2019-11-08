@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Volunteer Tracker</title>
+<script src="js/script.js"></script>
+<link rel='stylesheet' type='text/css' href='index.css'>
+</head>
+<body>
+	<!-- <h1>Volunteer Tracker</h1> -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-md-8">
+				<div>
+					<em><h1>This Is The Dog Gone It Volunteer Site</h1></em> <br>
+					<h2>Here We Can Share Information About Our Volunteers.</h2>
+					
+					<h2>Our Goal Is To Connect Fosters For No Kill Shelters</h2>
+					<h2>We Gladly Except New Volunteers</h2>
+					<h2>Currently Here Are Your Options</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	View all volunteers
+	<form name="allVol">
+		<button name="volAll">See All Volunteers</button>
+	</form>
+	<div id="outAll"></div><br>	
+	<div id="tablebody"></div>		
+	
+	 <div id='count'></div> 
+	
+	
+	<br> Find volunteer by i.d.
+	<form name="volById">
+		<input type="number" name="volId">
+		<button name="volById">Get Volunteer By Id</button>
+	</form>
+	<div id="outputById"></div>
+	
+	<br> Find volunteer by username(email address)
+	<form name="volByUN">
+		<input type="text" name="volUN">
+		<button name="volByUN">Get Volunteer By User Name</button>
+	</form><br><br>
+	<div id="outputByUN"></div>
+	
+	 <div id='editDelete'></div>
+	 <div id='justedit'></div>
+	
+	<!-- <br> Find active volunteers who are currently available
+	<form name="active">
+		
+		<button name="volActive">See All Active Volunteers</button>
+	</form>
+	<div id="outActive"></div> -->
+
+	
+
+	<br><h3> Most Important - To Become A Volunteer</h3>
+	<h4>username, password, first name, last name fields are mandatory fields</h4>
+	<form name="createVol">
+		<input type='text' name='username' size='40' placeholder='username/email_address'><br>
+		<input type='text' name='password' size='40' placeholder='password'><br>
+		<input type='text' name='firstname' size='40' placeholder='firstname'><br>
+		<input type='text' name='lastname' size='40' placeholder='lastname'><br>
+		Able To Volunteer Now?<select name='active'>
+		<option value='true'>Yes</option>
+		<option value='false'>No</option>
+		</select><br>Dog Size Your Willing To Foster<br>
+		<input type="checkbox" name='size' value='small'>Small<br>
+		<input type='checkbox' name='size' value='medium'>Medium<br>
+		<input type='checkbox' name='size' value='large'>Large<br>
+		<input type='checkbox' name='size' value='all'>All<br>
+		<input type='text' name='breeds' size='40' placeholder='Breeds Your Willing To Foster'><br>	
+		<button name="createVol">Click To Become A Volunteer</button>
+	</form>
+	<div id='createData'></div>
+
+	<br>
+	<h3>To Update Or Delete Your Information, First Find by ID or UserName</h3>
+	
+</body>
+</html>

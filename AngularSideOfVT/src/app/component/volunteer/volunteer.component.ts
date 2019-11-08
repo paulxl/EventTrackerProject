@@ -16,6 +16,8 @@ export class VolunteerComponent implements OnInit {
   vols: Volunteer[] = [];
   editVol: Volunteer = null;
   createVol: Volunteer = null;
+  start = null;
+  addNew = null;
   
   // Constructor
 
@@ -26,6 +28,7 @@ export class VolunteerComponent implements OnInit {
   // Methods
 
   ngOnInit() {
+    this.start = true;
     this.reload();
   }
   getVolCount(): number {
@@ -45,9 +48,12 @@ export class VolunteerComponent implements OnInit {
   }
   displayTable() {
     this.selected = null;
+    this.addNew = null;
+    this.start = true;
   }
   displayVolunteer(vol: Volunteer) {
     this.selected = vol;
+    this.start = null;
   }
 
   addNewVol() {
@@ -60,6 +66,8 @@ export class VolunteerComponent implements OnInit {
         console.error('Error in vol add new' + err);
       }
     );
+    this.start = true;
+    this.addNew = null;
   }
   updateVol() {
     this.volServ.update(this.editVol).subscribe(
@@ -70,7 +78,9 @@ export class VolunteerComponent implements OnInit {
         console.error('Error in vol component update' + err);
       }
     );
-
+    this.start = true;
+    this.editVol = null;
+    this.selected = null;
   }
   setEditVol() {
     this.editVol = Object.assign({}, this.selected);
@@ -85,13 +95,19 @@ export class VolunteerComponent implements OnInit {
         console.error('Error in vol componenet.delete' + err);
       }
     );
+    this.start = true;
+    this.selected = null;
   }
-  toggle(){
-    this.show = !this.show;
-   // this.show = this.newVol;
+  toggle() {
+    this.addNew = true;
+
   }
+  // toggle(){
+  //   this.show = !this.show;
+  //  // this.show = this.newVol;
+  // }
  // show: Volunteer = null;
-  show: boolean = false;
+ // show: boolean = false;
 //show: Volunteer=null;
  
 

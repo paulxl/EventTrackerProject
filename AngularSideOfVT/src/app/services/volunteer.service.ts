@@ -4,14 +4,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {NgForm} from "@angular/forms";
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VolunteerService {
    // Fields
-   private baseUrl = 'http://localhost:8090/api/volunteer';
+   //private url = '/VolunteerTracker/';
+   //private urlPath = 'api/volunteer';
+   private baseUrl = environment.baseUrl + 'api/volunteer';
+   //private baseUrl = this.url + this.urlPath;
+   //private baseUrl = 'http://localhost:8090/api/volunteer';
 
    
    // Constructor 

@@ -1,6 +1,3 @@
-<!-- <h2>Currently Here Are Your Options</h2> -->
-<!-- <button (click)="displayTable()" id="btn3">MAIN PAGE</button> -->
-
 <head>
     <style>
         img {
@@ -9,15 +6,12 @@
             height: 40%;
         }
     </style>
-
 </head>
-<div id='VolunteerList' *ngIf='!selected'>
+<div id='VolunteerList' *ngIf='start'>
     <p>
-        <img src='/assets/photos/IMG_1943.jpg'></p>
+        <img src='assets/photos/IMG_1943.jpg'></p>
     <h4>
         <table id='allTable '>
-            <!--class="table table-bordered"-->
-            <!-- <img src="IMG_1943.jpg" style="float: right; width: 150px; height: 300px; "> -->
             <thead>
                 <tr>
                     <th> ID </th>
@@ -28,7 +22,7 @@
                 </tr>
                 <tr *ngFor="let vol of vols">
                     <td (click)="displayVolunteer(vol)" type='button ' width='5% ' style=background-color:beige>{{vol.id}}</td>
-                    <!-- <td>{{vol.username}}</td> -->
+
                     <td>{{vol.firstname}}</td>
                     <td>{{vol.lastname}}</td>
                     <td>{{vol.active}}</td>
@@ -40,7 +34,7 @@
     <h3>Just Click on the ID number to see more about this volunteer.</h3><br><br>
 
     <h3>To Become A Volunteer With Us : </h3>
-    <h3> <button (click)="toggle()" id='btn1'>Click Here / Or To Return</button></h3>
+    <h3> <button (click)="toggle()" id='btn1'>Click Here To Become A Member</button></h3>
     <br><br>
 
 </div>
@@ -73,7 +67,7 @@
     <button (click)="deleteVol(selected.id)" style="margin: 20px">DELETE</button>
 
 </div>
-<div id="createNewVolunteer" *ngIf="show && !selected">
+<div id="createNewVolunteer" *ngIf="addNew">
     <form name='createNewVolunteer '>
         <input type='text ' name='username ' [(ngModel)]="newVol.username" size='40 ' placeholder='username/email_address '><br>
         <input type='text ' name='password ' [(ngModel)]="newVol.password" size='40 ' placeholder='password '><br>
@@ -94,6 +88,7 @@
         </select><br><br>
         <input type='text ' name='breeds ' [(ngModel)]="newVol.breeds" size='40 ' placeholder='Breeds Your Willing To Foster '><br>
         <button type="submit" (click)="addNewVol()" name="createVol" id="btn2">Click To Become A Volunteer</button>
+        <button (click)="displayTable()" id="btn3">MAIN PAGE</button>
         <!-- <br>  -->
     </form>
     <!-- <button (click)="displayTable()">MAIN PAGE</button> -->
